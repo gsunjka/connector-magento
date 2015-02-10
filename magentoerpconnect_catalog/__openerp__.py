@@ -32,7 +32,7 @@
              ],
  'author': 'MagentoERPconnect Core Editors',
  'license': 'AGPL-3',
- 'website': 'https://launchpad.net/magentoerpconnect',
+ 'website': 'http://www.odoo-magento-connector.com',
  'description': """
 Magento Connector - Catalog
 ===========================
