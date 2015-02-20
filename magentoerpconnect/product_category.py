@@ -93,19 +93,19 @@ class product_category(orm.Model):
                                                        default=default,
                                                        context=context)
 
-@magento
-class ProductCategoryImageAdapter(GenericAdapter):
-    _model_name = 'magento.product.category'
-    _magento_model = 'ol_catalog_category_media'
-
-    def create(self, name, binary):
-        img = self._call('%s.create' % self._magento_model, [name, binary])
-        if img == 'Error in file creation':
-            #TODO improve error management
-            raise Exception("Image creation: ",
-                "Magento tried to insert image (%s) but there is "
-                "no sufficient grants in the folder "
-                "'media/catalog/category' if it exists" % name)
+# @magento
+# class ProductCategoryImageAdapter(GenericAdapter):
+#     _model_name = 'magento.product.category'
+#     _magento_model = 'ol_catalog_category_media'
+#
+#     def create(self, name, binary):
+#         img = self._call('%s.create' % self._magento_model, [name, binary])
+#         if img == 'Error in file creation':
+#             #TODO improve error management
+#             raise Exception("Image creation: ",
+#                 "Magento tried to insert image (%s) but there is "
+#                 "no sufficient grants in the folder "
+#                 "'media/catalog/category' if it exists" % name)
 
 @magento
 class ProductCategoryAdapter(GenericAdapter):
