@@ -30,7 +30,7 @@ from openerp.addons.magentoerpconnect.unit.export_synchronizer import (
         MagentoTranslationExporter)
 from openerp.addons.magentoerpconnect.backend import magento
 from openerp.addons.magentoerpconnect.product_category import (
-    ProductCategoryImageAdapter,
+    # ProductCategoryImageAdapter,
     ProductCategoryAdapter,
     )
 from openerp.addons.connector.unit.synchronizer import ExportSynchronizer
@@ -244,7 +244,7 @@ class ProductCategoryImageExporter(ExportSynchronizer):
     @property
     def backend_adapter(self):
         get_unit = self.environment.get_connector_unit
-        self._backend_adapter = get_unit(ProductCategoryImageAdapter)
+        self._backend_adapter = get_unit(ProductCategoryAdapter)
         return self._backend_adapter
 
     def _prepare_create(self, categ, image_field):
@@ -262,7 +262,7 @@ class ProductCategoryImageExporter(ExportSynchronizer):
             browse(cr, uid, binding_id, context=ctx)
         args = self._prepare_create(categ, image_field)
         if args:
-            self.backend_adapter.create(*args)
+            self.backend_adapter.create_image(*args)
 
 
 @on_record_write(model_names='product.category')
