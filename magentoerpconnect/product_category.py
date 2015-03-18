@@ -186,14 +186,14 @@ class ProductCategoryAdapter(GenericAdapter):
         return self._call('%s.removeProduct' % self._magento_model,
                           [categ_id, product_id, 'id'])
 
-    def create_image(self, name, binary):
-        img = self._call('%s.create' % self.ol_catalog_category_media, [name, binary])
-        if img == 'Error in file creation':
-            #TODO improve error management
-            raise Exception("Image creation: ",
-                "Magento tried to insert image (%s) but there is "
-                "no sufficient grants in the folder "
-                "'media/catalog/category' if it exists" % name)
+    # def create_image(self, name, binary):
+    #     img = self._call('%s.create' % self.ol_catalog_category_media, [name, binary])
+    #     if img == 'Error in file creation':
+    #         #TODO improve error management
+    #         raise Exception("Image creation: ",
+    #             "Magento tried to insert image (%s) but there is "
+    #             "no sufficient grants in the folder "
+    #             "'media/catalog/category' if it exists" % name)
 
 
 @magento

@@ -68,46 +68,46 @@ class TestExportCategory(SetUpMagentoSynchronized):
             self.assertEqual(method, 'catalog_category.create')
             self.assertEqual(parent_id, 1)
 
-    def test_20_export_category_with_image(self):
-        """ Test export of category"""
-        response = {
-            'catalog_category.create':
-                self.get_magento_helper('magento.product.category').get_next_id,
-            'ol_catalog_category_media.create': 'true',
-        }
-        cr = self.cr
-        uid = self.uid
-        with mock_api(response, key_func=lambda m, a: m) as calls_done:
-            mag_categ_model = self.registry('magento.product.category')
-            mag_categ_id = mag_categ_model.create(cr, uid, {
-                'name': 'My Category',
-                'image': IMAGE,
-                'image_name': 'myimage.png',
-                'backend_id': self.backend_id,
-                })
-            
-            export_record(self.session, 'magento.product.category',
-                          mag_categ_id, 'image')
-            export_product_category_image(
-                self.session,
-                'magento.product.category',
-                mag_categ_id,
-                'image')
-
-            self.assertEqual(len(calls_done), 2)
-            method, (parent_id, data) = calls_done[0]
-            self.assertEqual(method, 'catalog_category.create')
-            self.assertEqual(parent_id, 1)
-            self.assertEqual(data['image'], 'myimage.png')
-            self.assertEqual(data['thumbnail'], 'myimage.png')
-            self.assertEqual(data['name'], 'My Category')
-
-            method, (image_name, image_data) = calls_done[1]
-            self.assertEqual(method, 'ol_catalog_category_media.create')
-            self.assertEqual(parent_id, 1)
-            self.assertEqual(image_name, 'myimage.png')
-            self.assertEqual(image_data, IMAGE)
-
+    # def test_20_export_category_with_image(self):
+    #     """ Test export of category"""
+    #     response = {
+    #         'catalog_category.create':
+    #             self.get_magento_helper('magento.product.category').get_next_id,
+    #         'ol_catalog_category_media.create': 'true',
+    #     }
+    #     cr = self.cr
+    #     uid = self.uid
+    #     with mock_api(response, key_func=lambda m, a: m) as calls_done:
+    #         mag_categ_model = self.registry('magento.product.category')
+    #         mag_categ_id = mag_categ_model.create(cr, uid, {
+    #             'name': 'My Category',
+    #             'image': IMAGE,
+    #             'image_name': 'myimage.png',
+    #             'backend_id': self.backend_id,
+    #             })
+    #         
+    #         export_record(self.session, 'magento.product.category',
+    #                       mag_categ_id, 'image')
+    #         export_product_category_image(
+    #             self.session,
+    #             'magento.product.category',
+    #             mag_categ_id,
+    #             'image')
+    #
+    #         self.assertEqual(len(calls_done), 2)
+    #         method, (parent_id, data) = calls_done[0]
+    #         self.assertEqual(method, 'catalog_category.create')
+    #         self.assertEqual(parent_id, 1)
+    #         self.assertEqual(data['image'], 'myimage.png')
+    #         self.assertEqual(data['thumbnail'], 'myimage.png')
+    #         self.assertEqual(data['name'], 'My Category')
+    #
+    #         method, (image_name, image_data) = calls_done[1]
+    #         self.assertEqual(method, 'ol_catalog_category_media.create')
+    #         self.assertEqual(parent_id, 1)
+    #         self.assertEqual(image_name, 'myimage.png')
+    #         self.assertEqual(image_data, IMAGE)
+    #
     def test_30_export_category_with_openerp_parent_dependency(self):
         """ Test export of category"""
         response = {
