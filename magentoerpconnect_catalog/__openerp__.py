@@ -30,7 +30,7 @@
              'product_image',
              'product_category_image',
              ],
- 'author': 'MagentoERPconnect Core Editors',
+ 'author': "Odoo Community Association (OCA)",
  'license': 'AGPL-3',
  'website': 'http://www.odoo-magento-connector.com',
  'description': """

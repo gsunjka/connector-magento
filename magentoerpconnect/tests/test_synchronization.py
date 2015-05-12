@@ -50,6 +50,7 @@ class SetUpMagentoBase(common.TransactionCase):
         super(SetUpMagentoBase, self).setUp()
         self.backend_model = self.registry('magento.backend')
         self.session = ConnectorSession(self.cr, self.uid)
+        self.session.context['__test_no_commit'] = True
         data_model = self.registry('ir.model.data')
         self.get_ref = partial(data_model.get_object_reference,
                                self.cr, self.uid)

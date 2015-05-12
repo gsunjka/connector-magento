@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
 #
-#    Author: Guewen Baconnier
-#    Copyright 2013 Camptocamp SA
+#    Author: Florian da Costa
+#    Copyright 2014 Akretion
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -19,27 +19,11 @@
 #
 ##############################################################################
 
-{'name': 'Magento Connector - Pricing',
- 'version': '2.0.0',
- 'category': 'Connector',
- 'depends': ['magentoerpconnect',
-             ],
- 'author': "Camptocamp,Odoo Community Association (OCA)",
- 'license': 'AGPL-3',
- 'website': 'http://www.odoo-magento-connector.com',
- 'description': """
-Magento Connector - Pricing
-===========================
+from . import test_synchronization
 
-Extension for **Magento Connector**.
+fast_suite = [
+]
 
-The prices of the products are managed in OpenERP using pricelists and
-are pushed to Magento.
-""",
- 'images': [],
- 'demo': [],
- 'data': ['magento_model_view.xml',
-          ],
- 'installable': True,
- 'application': False,
- }
+checks = [
+    test_synchronization,
+]
